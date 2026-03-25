@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
+import { FAQSection, FAQItem } from "@/components/FAQSection";
 
 export interface ServicePageData {
   title: string;
@@ -23,6 +24,7 @@ export interface ServicePageData {
   ctaTitle: string;
   ctaDescription: string;
   ctaButtonText: string;
+  faqs?: FAQItem[];
 }
 
 export default function ServicePageTemplate({ data }: { data: ServicePageData }) {
@@ -135,6 +137,11 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      {data.faqs && data.faqs.length > 0 && (
+        <FAQSection faqs={data.faqs} title={`${data.title} - FAQs`} subtitle={`Common questions about our ${data.title.toLowerCase()}`} className="bg-muted/30" />
+      )}
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-[hsl(var(--primary))] via-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white">
