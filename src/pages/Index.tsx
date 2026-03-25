@@ -6,6 +6,7 @@ import { TechnologiesSection } from "@/components/TechnologiesSection";
 import { PortfolioSection } from "@/components/PortfolioSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ContactSection } from "@/components/ContactSection";
+import { FAQSection } from "@/components/FAQSection";
 
 const Index = () => (
   <Layout>
