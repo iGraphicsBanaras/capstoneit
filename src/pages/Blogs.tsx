@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { BookOpen, TrendingUp, Lightbulb, Calendar, Clock as ClockIcon, ArrowRight, User, Code2, Smartphone, Brain, Cloud, Lock, Layers, Database, Globe, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { FAQSection } from "@/components/FAQSection";
 
 function BlogsHero() {
   return (
@@ -123,11 +124,18 @@ function BlogGrid() {
   );
 }
 
+const blogFaqs = [
+  { question: "How often do you publish new articles?", answer: "We publish new articles weekly covering the latest technology trends, development tips, and industry insights." },
+  { question: "Can I contribute a guest post?", answer: "Yes, we welcome guest posts from industry experts! Contact us at sales@capstoneittrends.com with your article idea." },
+  { question: "Do you cover specific technology topics on request?", answer: "Absolutely! If there's a specific topic you'd like us to cover, let us know and our expert team will create in-depth content on it." },
+];
+
 const Blogs = () => (
   <Layout>
     <BlogsHero />
     <BlogCategories />
     <BlogGrid />
+    <FAQSection faqs={blogFaqs} title="Blog FAQs" subtitle="Questions about our content" className="bg-background" />
   </Layout>
 );
 

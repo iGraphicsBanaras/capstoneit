@@ -2,6 +2,8 @@ import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Building2, Users, Lightbulb, TrendingUp, Target, Eye, Award, Code, Palette, Shield, Headphones } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { FAQSection } from "@/components/FAQSection";
+import { Card, CardContent } from "@/components/ui/card";
 
 function AboutHero() {
   return (
@@ -173,6 +175,13 @@ function ClientLogos() {
   );
 }
 
+const aboutFaqs = [
+  { question: "When was Capstone IT Trends founded?", answer: "Capstone IT Trends was founded with a vision to transform businesses through innovative technology solutions and has grown into a leading IT services provider in India." },
+  { question: "How large is the team at Capstone IT Trends?", answer: "Our team consists of 50+ talented professionals including developers, designers, digital marketing experts, QA engineers, and project managers." },
+  { question: "What is the company's mission?", answer: "Our mission is to empower businesses with innovative technology solutions that drive growth, efficiency, and digital transformation while maintaining the highest standards of quality." },
+  { question: "Do you serve international clients?", answer: "Yes, we proudly serve clients across India and globally, spanning continents from North America to Europe and Asia-Pacific." },
+];
+
 const About = () => (
   <Layout>
     <AboutHero />
@@ -181,6 +190,7 @@ const About = () => (
     <OurMission />
     <OurTeam />
     <ClientLogos />
+    <FAQSection faqs={aboutFaqs} title="About Us - FAQs" subtitle="Learn more about Capstone IT Trends" className="bg-background" />
   </Layout>
 );
 

@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, TrendingUp, Users, Clock, Star } from "lucide-react";
+import { FAQSection } from "@/components/FAQSection";
 
 function PortfolioHero() {
   return (
@@ -131,11 +132,19 @@ function CaseStudies() {
   );
 }
 
+const portfolioFaqs = [
+  { question: "How many projects has Capstone IT Trends completed?", answer: "We have successfully completed 100+ projects across web development, mobile apps, e-commerce, AI, digital marketing, and more." },
+  { question: "Can I see a demo of your past projects?", answer: "Yes! Contact us and we'll be happy to provide live demos and detailed case studies of our relevant past projects." },
+  { question: "What industries have you worked with?", answer: "We've worked across Healthcare, E-commerce, Real Estate, Education, Finance, Travel, Hospitality, Manufacturing, and many more industries." },
+  { question: "Do you provide references from past clients?", answer: "Absolutely! We can connect you with our past clients for references and testimonials upon request." },
+];
+
 const Portfolio = () => (
   <Layout>
     <PortfolioHero />
     <PortfolioGrid />
     <CaseStudies />
+    <FAQSection faqs={portfolioFaqs} title="Portfolio FAQs" subtitle="Questions about our work and projects" className="bg-background" />
   </Layout>
 );
 
