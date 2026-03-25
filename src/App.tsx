@@ -5,6 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import About from "./pages/About.tsx";
+import Portfolio from "./pages/Portfolio.tsx";
+import Contact from "./pages/Contact.tsx";
+import Blogs from "./pages/Blogs.tsx";
 import WebsiteDesign from "./pages/services/WebsiteDesign.tsx";
 import GraphicDesign from "./pages/services/GraphicDesign.tsx";
 import OracleDBA from "./pages/services/OracleDBA.tsx";
@@ -21,6 +25,10 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/services/website-design" element={<WebsiteDesign />} />
           <Route path="/services/graphic-design" element={<GraphicDesign />} />
           <Route path="/services/oracle-dba" element={<OracleDBA />} />
