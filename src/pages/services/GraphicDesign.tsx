@@ -1,40 +1,38 @@
-import ServicePage, { ServiceData } from "./ServicePage";
-import { Palette, Image, Layers, PenTool, BookOpen, Package } from "lucide-react";
+import ServicePageTemplate, { ServicePageData } from "./ServicePage";
+import { Palette, Sparkles, Target, Layers, Eye, Award } from "lucide-react";
 
-const data: ServiceData = {
-  badge: "Premium Service",
+const data: ServicePageData = {
   title: "Graphic Design Services",
-  subtitle: "Creative graphic design solutions that communicate your brand message effectively and leave a lasting impression.",
-  heroImage: "https://www.capstoneittrends.com/_next/image?url=%2Fservices%2Fgraphic-design.jpg&w=640&q=75",
-  description: [
-    "Our graphic design team at Capstone IT Trends creates visually compelling designs that capture attention and communicate your brand message effectively. From logos and branding to marketing materials and digital graphics, we deliver designs that make an impact.",
-    "We understand that great design is more than just aesthetics – it's about creating visual stories that resonate with your audience. Our designers combine creativity with strategy to produce designs that not only look amazing but also achieve your business objectives.",
-  ],
+  subtitle: "Visual Stories That Captivate and Convert",
+  description: "Elevate your brand with our professional graphic design services. From logos to marketing materials, we create stunning visuals that communicate your message and resonate with your audience.",
+  image: "/creative-graphic-design-workspace.jpg",
+  contentHeading: "Professional Graphic Design Solutions",
+  content: "At Capstone IT Trends, we believe great design is more than just aesthetics—it's about creating visual communication that drives business results. Our talented team of graphic designers combines creativity with strategic thinking to deliver designs that not only look beautiful but also effectively communicate your brand message and engage your target audience.",
+  subheading: "Comprehensive Design Services",
+  subcontent: "Whether you need a new logo, complete brand identity, marketing collateral, social media graphics, or packaging design, we have the expertise to bring your vision to life. We work closely with you throughout the design process, ensuring every element aligns with your brand strategy and business objectives.",
   features: [
-    { icon: Palette, title: "Brand Identity", desc: "Complete branding solutions including logos and guidelines" },
-    { icon: Image, title: "Marketing Materials", desc: "Brochures, flyers, banners, and promotional designs" },
-    { icon: Layers, title: "Social Media Graphics", desc: "Eye-catching graphics for all social platforms" },
-    { icon: PenTool, title: "Illustration", desc: "Custom illustrations and infographics" },
-    { icon: BookOpen, title: "Print Design", desc: "Business cards, letterheads, and packaging" },
-    { icon: Package, title: "Packaging Design", desc: "Product packaging that stands out on shelves" },
+    { icon: Palette, title: "Brand Identity", description: "Complete branding solutions including logos, color schemes, and style guides" },
+    { icon: Sparkles, title: "Creative Excellence", description: "Unique and memorable designs that capture your brand essence" },
+    { icon: Target, title: "Marketing Materials", description: "Eye-catching designs for all your marketing and promotional needs" },
+    { icon: Layers, title: "Multi-Format Design", description: "Designs optimized for both digital and print media" },
+    { icon: Eye, title: "Visual Impact", description: "Designs that grab attention and leave lasting impressions" },
+    { icon: Award, title: "Award-Winning Team", description: "Experienced designers with proven track record of success" },
   ],
-  process: [
-    { step: "01", title: "Brief", desc: "Understanding requirements" },
-    { step: "02", title: "Research", desc: "Market & brand analysis" },
-    { step: "03", title: "Concept", desc: "Creating initial concepts" },
-    { step: "04", title: "Refine", desc: "Iterations & feedback" },
-    { step: "05", title: "Deliver", desc: "Final files & formats" },
+  processSteps: [
+    { title: "Brand Discovery", description: "Understanding your brand values, target audience, and design preferences" },
+    { title: "Concept Development", description: "Creating multiple design concepts and exploring different directions" },
+    { title: "Design Refinement", description: "Refining chosen concepts based on your feedback and requirements" },
+    { title: "Final Delivery", description: "Delivering final designs in all required formats with source files" },
+    { title: "Brand Guidelines", description: "Providing comprehensive brand guidelines for consistent usage" },
   ],
-  services: [
-    "Logo Design", "Brand Identity", "Social Media Graphics",
-    "Brochure Design", "Packaging Design", "Infographic Design",
-    "Banner & Poster Design", "Presentation Design",
-  ],
-  industries: [
-    "Fashion & Lifestyle", "Food & Beverage", "Technology", "Healthcare",
-    "Education", "Entertainment", "Retail", "Non-Profit",
-  ],
+  expertiseTitle: "Our Design Services",
+  col1Title: "Brand Design",
+  col1Items: ["Logo Design", "Brand Identity", "Style Guides", "Business Cards"],
+  col2Title: "Digital Design",
+  col2Items: ["Social Media Graphics", "Email Templates", "Web Graphics", "Infographics"],
+  ctaTitle: "Ready to Elevate Your Brand?",
+  ctaDescription: "Let's create stunning visuals that make your brand unforgettable.",
+  ctaButtonText: "Start Your Project",
 };
 
-const GraphicDesign = () => <ServicePage data={data} />;
-export default GraphicDesign;
+export default function GraphicDesign() { return <ServicePageTemplate data={data} />; }

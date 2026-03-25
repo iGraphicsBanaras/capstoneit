@@ -1,78 +1,87 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Phone } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 
-export interface ServiceData {
-  badge: string;
+export interface ServicePageData {
   title: string;
   subtitle: string;
-  heroImage: string;
-  description: string[];
-  features: { icon: LucideIcon; title: string; desc: string }[];
-  process: { step: string; title: string; desc: string }[];
-  services: string[];
-  industries: string[];
+  description: string;
+  image: string;
+  contentHeading: string;
+  content: string;
+  subheading: string;
+  subcontent: string;
+  features: { icon: LucideIcon; title: string; description: string }[];
+  processSteps: { title: string; description: string }[];
+  expertiseTitle: string;
+  col1Title: string;
+  col1Items: string[];
+  col2Title: string;
+  col2Items: string[];
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaButtonText: string;
 }
 
-const ServicePage = ({ data }: { data: ServiceData }) => {
+export default function ServicePageTemplate({ data }: { data: ServicePageData }) {
   return (
     <Layout>
       {/* Hero */}
-      <section className="gradient-navy relative overflow-hidden py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-[hsl(var(--primary))]/5 via-background to-[hsl(var(--accent))]/5">
+        <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider glass-card text-[hsl(var(--primary))] mb-6">
-                {data.badge}
-              </span>
-              <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-                {data.title}
-              </h1>
-              <p className="text-white/70 text-lg mb-8 max-w-lg">{data.subtitle}</p>
-              <div className="flex flex-wrap gap-4">
-                <Button className="gradient-orange text-white font-semibold px-8 py-6 text-base border-0 hover:opacity-90">
-                  Get Started <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-base bg-transparent">
-                  View Portfolio
-                </Button>
+            <div className="space-y-6">
+              <div className="inline-block px-4 py-2 bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] rounded-full text-sm font-semibold">Premium Service</div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance">{data.title}</h1>
+              <p className="text-xl md:text-2xl text-[hsl(var(--accent))] font-semibold text-balance">{data.subtitle}</p>
+              <p className="text-lg text-muted-foreground text-pretty leading-relaxed">{data.description}</p>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Button asChild size="lg" className="bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))]/90"><Link to="/contact">Get Started</Link></Button>
+                <Button asChild size="lg" variant="outline"><Link to="/portfolio">View Portfolio</Link></Button>
               </div>
-            </motion.div>
-            <div className="hidden lg:block">
-              <img src={data.heroImage} alt={data.title} className="rounded-2xl shadow-2xl w-full" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+            </div>
+            <div className="relative">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                <img src={data.image} alt={data.title} className="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Description */}
-      <section className="gradient-navy py-16">
-        <div className="max-w-4xl mx-auto px-4 space-y-5">
-          {data.description.map((p, i) => (
-            <p key={i} className="text-white/70 leading-relaxed">{p}</p>
-          ))}
+      {/* Content */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">{data.contentHeading}</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">{data.content}</p>
+            </div>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-balance">{data.subheading}</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">{data.subcontent}</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="gradient-navy py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-[hsl(var(--primary))] text-sm font-semibold uppercase tracking-wider">Features</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mt-3">
-              Key Features & <span className="text-gradient-orange">Benefits</span>
-            </h2>
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Key Features & Benefits</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Discover what makes our service exceptional and how we deliver value to your business.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.features.map((f) => (
-              <div key={f.title} className="glass-card rounded-xl p-6 hover:border-[hsl(var(--primary))]/40 transition-all">
-                <div className="w-12 h-12 rounded-lg gradient-orange flex items-center justify-center mb-4">
-                  <f.icon className="w-6 h-6 text-white" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {data.features.map((f, i) => (
+              <div key={i} className="bg-background rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-border group">
+                <div className="w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <f.icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-2">{f.title}</h3>
-                <p className="text-white/50 text-sm">{f.desc}</p>
+                <h3 className="text-xl font-bold mb-2">{f.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{f.description}</p>
               </div>
             ))}
           </div>
@@ -80,25 +89,20 @@ const ServicePage = ({ data }: { data: ServiceData }) => {
       </section>
 
       {/* Process */}
-      <section className="gradient-navy py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <span className="text-[hsl(var(--primary))] text-sm font-semibold uppercase tracking-wider">Our Process</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mt-3">
-              Development <span className="text-gradient-orange">Process</span>
-            </h2>
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Development Process</h2>
+            <p className="text-lg text-muted-foreground">A proven methodology that ensures project success from concept to completion</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {data.process.map((p, i) => (
-              <div key={p.step} className="glass-card rounded-xl p-5 text-center relative">
-                <div className="w-10 h-10 rounded-full gradient-orange flex items-center justify-center mx-auto mb-3 text-white font-bold text-sm">
-                  {p.step}
+          <div className="max-w-4xl mx-auto space-y-6">
+            {data.processSteps.map((step, i) => (
+              <div key={i} className="flex gap-6 items-start bg-background border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full flex items-center justify-center text-white font-bold text-lg">{i + 1}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
-                <h4 className="text-white font-semibold text-sm mb-1">{p.title}</h4>
-                <p className="text-white/50 text-xs">{p.desc}</p>
-                {i < data.process.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-3 text-[hsl(var(--primary))]">→</div>
-                )}
               </div>
             ))}
           </div>
@@ -106,29 +110,26 @@ const ServicePage = ({ data }: { data: ServiceData }) => {
       </section>
 
       {/* Expertise */}
-      <section className="gradient-navy py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Our Services Include</h3>
-              <div className="space-y-3">
-                {data.services.map((s) => (
-                  <div key={s} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[hsl(var(--primary))] shrink-0" />
-                    <span className="text-white/70 text-sm">{s}</span>
-                  </div>
-                ))}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">{data.expertiseTitle}</h2>
+            <div className="grid md:grid-cols-2 gap-8 mt-12">
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-[hsl(var(--primary))]">{data.col1Title}</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  {data.col1Items.map((item) => (
+                    <li key={item} className="flex items-start gap-2"><span className="text-[hsl(var(--accent))] mt-1">✓</span><span>{item}</span></li>
+                  ))}
+                </ul>
               </div>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Industries We Serve</h3>
-              <div className="space-y-3">
-                {data.industries.map((ind) => (
-                  <div key={ind} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[hsl(var(--accent))] shrink-0" />
-                    <span className="text-white/70 text-sm">{ind}</span>
-                  </div>
-                ))}
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-[hsl(var(--primary))]">{data.col2Title}</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  {data.col2Items.map((item) => (
+                    <li key={item} className="flex items-start gap-2"><span className="text-[hsl(var(--accent))] mt-1">✓</span><span>{item}</span></li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -136,24 +137,22 @@ const ServicePage = ({ data }: { data: ServiceData }) => {
       </section>
 
       {/* CTA */}
-      <section className="gradient-orange py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-white/80 mb-8">Get a free consultation and let us help you achieve your business goals.</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-white text-[hsl(var(--primary))] font-semibold px-8 py-6 text-base hover:bg-white/90">
-              Get Free Consultation
-            </Button>
-            <a href="tel:+918448668060" className="inline-flex items-center gap-2 text-white font-semibold text-lg">
-              <Phone className="w-5 h-5" /> +91 8448668060
-            </a>
+      <section className="py-20 bg-gradient-to-br from-[hsl(var(--primary))] via-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{data.ctaTitle}</h2>
+            <p className="text-lg md:text-xl mb-8 text-white/90">{data.ctaDescription}</p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button asChild size="lg" className="bg-white text-[hsl(var(--primary))] hover:bg-white/90">
+                <Link to="/contact">{data.ctaButtonText}<ArrowRight className="ml-2 h-5 w-5" /></Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-transparent">
+                <a href="tel:9151555290">Call Us: 9151555290</a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
     </Layout>
   );
-};
-
-export default ServicePage;
+}
