@@ -1,41 +1,38 @@
-import ServicePage, { ServiceData } from "./ServicePage";
-import { Database, Zap, Globe, ShieldCheck, Layers, Settings } from "lucide-react";
+import ServicePageTemplate, { ServicePageData } from "./ServicePage";
+import { Database, Zap, Lock, Layers, TrendingUp, Server } from "lucide-react";
 
-const data: ServiceData = {
-  badge: "Premium Service",
+const data: ServicePageData = {
   title: "MongoDB Development Services",
-  subtitle: "Scalable and flexible MongoDB solutions for modern applications that need to handle large volumes of data efficiently.",
-  heroImage: "https://www.capstoneittrends.com/_next/image?url=%2Fservices%2Fmongodb.jpg&w=640&q=75",
-  description: [
-    "Capstone IT Trends offers expert MongoDB development services to help businesses leverage the power of NoSQL databases. Our MongoDB specialists design and implement database solutions that provide the flexibility, scalability, and performance your applications need.",
-    "Whether you're building a new application from scratch or migrating from a traditional relational database, our team ensures a smooth transition and optimal database architecture that supports your business growth.",
-  ],
+  subtitle: "Build Scalable Applications with NoSQL",
+  description: "Harness the power of MongoDB for flexible, scalable, and high-performance database solutions. Our expert developers create custom MongoDB applications tailored to your business needs.",
+  image: "/mongodb-database-development.jpg",
+  contentHeading: "Expert MongoDB Development Company",
+  content: "Capstone IT Trends specializes in MongoDB development, helping businesses leverage the power of NoSQL databases for modern, scalable applications. Our experienced MongoDB developers work with you to design flexible data models, implement efficient queries, and build high-performance applications that can handle massive amounts of data.",
+  subheading: "Comprehensive MongoDB Solutions",
+  subcontent: "Whether you're building a new application or migrating from a relational database, we have the expertise to help. Our services include MongoDB database design, application development, performance optimization, migration services, replication and sharding setup, cloud deployment on MongoDB Atlas, and 24/7 support.",
   features: [
-    { icon: Database, title: "Schema Design", desc: "Optimized MongoDB schema design for your use case" },
-    { icon: Zap, title: "Performance", desc: "High-performance queries and indexing strategies" },
-    { icon: Globe, title: "Scalability", desc: "Horizontal scaling with sharding and replication" },
-    { icon: ShieldCheck, title: "Security", desc: "Enterprise-grade security and access control" },
-    { icon: Layers, title: "Integration", desc: "Seamless integration with your tech stack" },
-    { icon: Settings, title: "Migration", desc: "Database migration from SQL to MongoDB" },
+    { icon: Database, title: "Flexible Schema Design", description: "Dynamic schemas that evolve with your application requirements" },
+    { icon: Zap, title: "High Performance", description: "Fast queries and operations with optimized indexing strategies" },
+    { icon: Lock, title: "Secure & Reliable", description: "Enterprise-grade security with authentication and encryption" },
+    { icon: Layers, title: "Horizontal Scaling", description: "Seamlessly scale across multiple servers with sharding" },
+    { icon: TrendingUp, title: "Real-Time Analytics", description: "Powerful aggregation framework for complex data analysis" },
+    { icon: Server, title: "Cloud Integration", description: "Deploy on MongoDB Atlas or any cloud platform" },
   ],
-  process: [
-    { step: "01", title: "Analysis", desc: "Data modeling & analysis" },
-    { step: "02", title: "Design", desc: "Schema & architecture design" },
-    { step: "03", title: "Development", desc: "Building & integration" },
-    { step: "04", title: "Testing", desc: "Performance & load testing" },
-    { step: "05", title: "Deploy", desc: "Deployment & monitoring" },
+  processSteps: [
+    { title: "Requirements Analysis", description: "Understanding your data model, queries, and scalability requirements" },
+    { title: "Schema Design", description: "Designing optimal document structure and relationships" },
+    { title: "Development & Integration", description: "Implementing MongoDB with your application using best practices" },
+    { title: "Optimization", description: "Fine-tuning indexes, queries, and aggregation pipelines" },
+    { title: "Deployment & Monitoring", description: "Cloud deployment with continuous monitoring and support" },
   ],
-  services: [
-    "MongoDB Consulting", "Schema Design & Optimization",
-    "Application Development", "Data Migration",
-    "Performance Tuning", "MongoDB Atlas Setup",
-    "Replica Set Configuration", "Monitoring & Maintenance",
-  ],
-  industries: [
-    "E-commerce", "Social Media", "IoT", "Gaming",
-    "Content Management", "Logistics", "FinTech", "Healthcare",
-  ],
+  expertiseTitle: "Our MongoDB Expertise",
+  col1Title: "Services",
+  col1Items: ["Custom MongoDB Development", "Schema Design & Optimization", "Migration from SQL to MongoDB", "Performance Tuning & Indexing", "Replication & Sharding Setup", "MongoDB Atlas Cloud Deployment"],
+  col2Title: "Technologies",
+  col2Items: ["MongoDB 5.x, 6.x, 7.x", "MongoDB Atlas Cloud", "Mongoose ODM", "Node.js, Python, Java Drivers", "Aggregation Framework", "MongoDB Compass & Tools"],
+  ctaTitle: "Ready to Build with MongoDB?",
+  ctaDescription: "Let our experts help you leverage MongoDB for your next project.",
+  ctaButtonText: "Get Free Consultation",
 };
 
-const MongoDBDevelopment = () => <ServicePage data={data} />;
-export default MongoDBDevelopment;
+export default function MongoDBDevelopment() { return <ServicePageTemplate data={data} />; }

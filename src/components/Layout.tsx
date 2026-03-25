@@ -4,9 +4,9 @@ import Footer from "./Footer";
 import FloatingButtons from "./FloatingButtons";
 
 const Layout = ({ children }: { children: ReactNode }) => (
-  <div className="min-h-screen flex flex-col">
+  <div className="min-h-screen relative">
     <Header />
-    <main className="flex-1">{children}</main>
+    <main className="relative z-10">{children}</main>
     <Footer />
     <FloatingButtons />
   </div>

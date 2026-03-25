@@ -1,40 +1,38 @@
-import ServicePage, { ServiceData } from "./ServicePage";
-import { Globe, Palette, Smartphone, Zap, ShieldCheck, BarChart3 } from "lucide-react";
+import ServicePageTemplate, { ServicePageData } from "./ServicePage";
+import { Globe, Palette, Zap, Users, TrendingUp, Shield } from "lucide-react";
 
-const data: ServiceData = {
-  badge: "Premium Service",
+const data: ServicePageData = {
   title: "Website Design Services",
-  subtitle: "We create stunning, responsive websites that drive engagement and convert visitors into customers.",
-  heroImage: "https://www.capstoneittrends.com/_next/image?url=%2Fservices%2Fweb-design.jpg&w=640&q=75",
-  description: [
-    "At Capstone IT Trends, we specialize in creating visually stunning and highly functional websites that help businesses establish a strong online presence. Our team of experienced designers and developers work together to deliver websites that not only look great but also perform exceptionally well.",
-    "Whether you need a simple business website, a complex e-commerce platform, or a custom web application, we have the expertise and creativity to bring your vision to life. We use the latest technologies and design trends to ensure your website stands out from the competition.",
-  ],
+  subtitle: "Create Stunning Digital Experiences That Convert",
+  description: "Transform your online presence with our professional website design services. We craft beautiful, responsive, and user-friendly websites that not only look amazing but also drive real business results.",
+  image: "/modern-website-mockup.png",
+  contentHeading: "Why Choose Our Website Design Services?",
+  content: "At Capstone IT Trends, we understand that your website is often the first impression potential customers have of your business. Our expert team of designers and developers work together to create websites that are not only visually stunning but also strategically designed to achieve your business goals. We specialize in custom website design, responsive layouts, e-commerce solutions, and corporate web design that sets you apart from the competition.",
+  subheading: "Comprehensive Website Design Solutions",
+  subcontent: "Whether you need a simple brochure website, a complex e-commerce platform, or a custom web application, we have the expertise to deliver. Our design process is collaborative, transparent, and focused on creating a website that perfectly represents your brand and engages your target audience. We use the latest design trends, technologies, and best practices to ensure your website is future-proof and scalable.",
   features: [
-    { icon: Globe, title: "Responsive Design", desc: "Websites that look perfect on all devices and screen sizes" },
-    { icon: Palette, title: "Custom UI/UX", desc: "Unique designs tailored to your brand identity" },
-    { icon: Zap, title: "Fast Performance", desc: "Optimized for speed and seamless user experience" },
-    { icon: ShieldCheck, title: "SEO Optimized", desc: "Built with search engine best practices in mind" },
-    { icon: Smartphone, title: "Mobile First", desc: "Designed with mobile users as the primary focus" },
-    { icon: BarChart3, title: "Analytics Integration", desc: "Track and measure your website performance" },
+    { icon: Globe, title: "Responsive Design", description: "Mobile-first designs that look perfect on all devices and screen sizes" },
+    { icon: Palette, title: "Custom UI/UX", description: "Unique designs tailored to your brand identity and target audience" },
+    { icon: Zap, title: "Fast Loading", description: "Optimized for speed and performance to enhance user experience" },
+    { icon: Users, title: "User-Centric", description: "Intuitive navigation and layouts that convert visitors into customers" },
+    { icon: TrendingUp, title: "SEO Friendly", description: "Built with SEO best practices to rank higher in search engines" },
+    { icon: Shield, title: "Secure & Reliable", description: "Industry-standard security measures to protect your website" },
   ],
-  process: [
-    { step: "01", title: "Discovery", desc: "Understanding your goals" },
-    { step: "02", title: "Design", desc: "Creating the visual concept" },
-    { step: "03", title: "Development", desc: "Building the website" },
-    { step: "04", title: "Testing", desc: "Quality assurance checks" },
-    { step: "05", title: "Launch", desc: "Going live & support" },
+  processSteps: [
+    { title: "Discovery & Research", description: "Understanding your business, goals, target audience, and competitors" },
+    { title: "Wireframing & Planning", description: "Creating site structure, user flows, and initial wireframes" },
+    { title: "Design & Prototyping", description: "Crafting visual designs and interactive prototypes for approval" },
+    { title: "Development & Testing", description: "Building the website with clean code and rigorous testing" },
+    { title: "Launch & Support", description: "Deploying your website and providing ongoing maintenance support" },
   ],
-  services: [
-    "Custom Website Design", "E-commerce Development", "Landing Page Design",
-    "WordPress Development", "Website Redesign", "Web Application Development",
-    "CMS Development", "Website Maintenance",
-  ],
-  industries: [
-    "Healthcare", "E-commerce", "Education", "Finance",
-    "Real Estate", "Travel & Hospitality", "Food & Restaurant", "Technology",
-  ],
+  expertiseTitle: "Our Website Design Expertise",
+  col1Title: "Design Services",
+  col1Items: ["Custom Website Design", "Responsive Web Design", "E-commerce Website Design", "Landing Page Design", "UI/UX Design", "Website Redesign"],
+  col2Title: "Industry Expertise",
+  col2Items: ["E-commerce & Retail", "Healthcare & Medical", "Real Estate & Property", "Education & E-learning", "Finance & Banking", "Travel & Hospitality"],
+  ctaTitle: "Ready to Transform Your Online Presence?",
+  ctaDescription: "Let's create a website that your customers will love and that drives real business results.",
+  ctaButtonText: "Get Free Consultation",
 };
 
-const WebsiteDesign = () => <ServicePage data={data} />;
-export default WebsiteDesign;
+export default function WebsiteDesign() { return <ServicePageTemplate data={data} />; }

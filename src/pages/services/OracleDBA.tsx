@@ -1,41 +1,38 @@
-import ServicePage, { ServiceData } from "./ServicePage";
-import { Database, ShieldCheck, Zap, Settings, BarChart3, Clock } from "lucide-react";
+import ServicePageTemplate, { ServicePageData } from "./ServicePage";
+import { Database, Shield, Zap, Clock, TrendingUp, Wrench } from "lucide-react";
 
-const data: ServiceData = {
-  badge: "Premium Service",
+const data: ServicePageData = {
   title: "Oracle DBA Services",
-  subtitle: "Expert Oracle database administration services ensuring optimal performance, security, and reliability for your enterprise systems.",
-  heroImage: "https://www.capstoneittrends.com/_next/image?url=%2Fservices%2Foracle-dba.jpg&w=640&q=75",
-  description: [
-    "Capstone IT Trends provides comprehensive Oracle DBA services to help organizations manage, optimize, and secure their Oracle database environments. Our certified Oracle DBAs bring years of experience in handling complex database architectures across various industries.",
-    "From database installation and configuration to performance tuning and disaster recovery, our Oracle DBA team ensures your databases run at peak performance while maintaining the highest levels of security and availability.",
-  ],
+  subtitle: "Expert Database Administration for Maximum Performance",
+  description: "Ensure your Oracle databases run at peak performance with our certified DBA experts. From installation to optimization, we provide comprehensive database administration services.",
+  image: "/oracle-database-administration-dashboard.jpg",
+  contentHeading: "Professional Oracle Database Administration",
+  content: "At Capstone IT Trends, our certified Oracle DBAs bring years of experience managing mission-critical databases for businesses across industries. We provide comprehensive Oracle database administration services including installation, configuration, performance tuning, security management, backup and recovery, and 24/7 monitoring.",
+  subheading: "Complete Oracle DBA Solutions",
+  subcontent: "Whether you need full-time database management, project-based support, or emergency assistance, our team has you covered. We work with all Oracle database versions and handle everything from small business databases to large enterprise implementations.",
   features: [
-    { icon: Database, title: "Database Management", desc: "Complete Oracle database administration and management" },
-    { icon: Zap, title: "Performance Tuning", desc: "SQL optimization and database performance enhancement" },
-    { icon: ShieldCheck, title: "Security & Compliance", desc: "Database security hardening and compliance management" },
-    { icon: Settings, title: "Migration Services", desc: "Seamless database migration and upgrade services" },
-    { icon: BarChart3, title: "Monitoring", desc: "24/7 database monitoring and alerting" },
-    { icon: Clock, title: "Disaster Recovery", desc: "Backup strategies and disaster recovery planning" },
+    { icon: Database, title: "Database Management", description: "Complete Oracle database administration, installation, and configuration" },
+    { icon: Shield, title: "Security & Compliance", description: "Advanced security implementation and compliance management" },
+    { icon: Zap, title: "Performance Tuning", description: "Optimize database performance with expert tuning and optimization" },
+    { icon: Clock, title: "24/7 Monitoring", description: "Round-the-clock database monitoring and proactive maintenance" },
+    { icon: TrendingUp, title: "Disaster Recovery", description: "Comprehensive backup, recovery, and disaster recovery solutions" },
+    { icon: Wrench, title: "Database Migration", description: "Seamless database migration and upgrade services" },
   ],
-  process: [
-    { step: "01", title: "Assessment", desc: "Database environment audit" },
-    { step: "02", title: "Planning", desc: "Strategy & roadmap creation" },
-    { step: "03", title: "Implementation", desc: "Executing the plan" },
-    { step: "04", title: "Optimization", desc: "Performance tuning" },
-    { step: "05", title: "Support", desc: "Ongoing maintenance" },
+  processSteps: [
+    { title: "Assessment & Planning", description: "Analyzing current database infrastructure and planning optimization strategy" },
+    { title: "Implementation", description: "Setting up monitoring, security, and performance optimization tools" },
+    { title: "Optimization", description: "Fine-tuning database performance and resolving bottlenecks" },
+    { title: "Monitoring & Support", description: "Continuous monitoring and proactive support for optimal performance" },
+    { title: "Maintenance & Updates", description: "Regular maintenance, patches, and version upgrades" },
   ],
-  services: [
-    "Oracle DB Installation & Configuration", "Performance Tuning & Optimization",
-    "Database Migration & Upgrades", "Backup & Recovery Solutions",
-    "RAC & Data Guard Setup", "Security Auditing & Hardening",
-    "24/7 Monitoring & Support", "Capacity Planning",
-  ],
-  industries: [
-    "Banking & Finance", "Healthcare", "Telecommunications", "Government",
-    "Manufacturing", "Retail", "Insurance", "Energy & Utilities",
-  ],
+  expertiseTitle: "Our Oracle DBA Expertise",
+  col1Title: "DBA Services",
+  col1Items: ["Database Installation & Configuration", "Performance Tuning & Optimization", "Backup & Recovery Management", "Database Security & Auditing", "High Availability Setup (RAC, Data Guard)", "Database Migration & Upgrades"],
+  col2Title: "Technologies",
+  col2Items: ["Oracle 12c, 18c, 19c, 21c", "Oracle RAC (Real Application Clusters)", "Oracle Data Guard", "Oracle GoldenGate", "Oracle Cloud Infrastructure", "RMAN, ASM, Exadata"],
+  ctaTitle: "Need Expert Oracle DBA Support?",
+  ctaDescription: "Let our certified DBAs optimize and manage your Oracle databases.",
+  ctaButtonText: "Get Free Database Assessment",
 };
 
-const OracleDBA = () => <ServicePage data={data} />;
-export default OracleDBA;
+export default function OracleDBA() { return <ServicePageTemplate data={data} />; }

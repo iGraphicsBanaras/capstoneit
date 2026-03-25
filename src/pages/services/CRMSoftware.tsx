@@ -1,41 +1,38 @@
-import ServicePage, { ServiceData } from "./ServicePage";
-import { Users, BarChart3, Settings, Zap, Globe, ShieldCheck } from "lucide-react";
+import ServicePageTemplate, { ServicePageData } from "./ServicePage";
+import { Users, BarChart3, Target, Workflow, MessageSquare, Shield } from "lucide-react";
 
-const data: ServiceData = {
-  badge: "Premium Service",
+const data: ServicePageData = {
   title: "CRM Software Development",
-  subtitle: "Custom CRM solutions designed to streamline your customer relationships and boost sales performance.",
-  heroImage: "https://www.capstoneittrends.com/_next/image?url=%2Fservices%2Fcrm.jpg&w=640&q=75",
-  description: [
-    "At Capstone IT Trends, we develop custom CRM solutions tailored to your specific business needs. Our CRM software helps you manage customer interactions, streamline sales processes, and improve customer satisfaction with powerful features and intuitive interfaces.",
-    "Unlike off-the-shelf CRM solutions, our custom-built systems are designed to align perfectly with your business processes, providing you with the flexibility and functionality you need to drive growth and build lasting customer relationships.",
-  ],
+  subtitle: "Custom CRM Solutions That Drive Growth",
+  description: "Transform your customer relationships with custom CRM software built specifically for your business processes. Manage leads, automate sales, and deliver exceptional customer experiences.",
+  image: "/crm-software-dashboard-interface.jpg",
+  contentHeading: "Custom CRM Software Development Company",
+  content: "Capstone IT Trends specializes in developing custom CRM solutions that perfectly align with your business processes and goals. Unlike off-the-shelf CRM systems, our custom-built solutions are designed around your specific workflows, integrations, and requirements.",
+  subheading: "End-to-End CRM Development Services",
+  subcontent: "We provide comprehensive CRM development services including requirement analysis, custom feature development, third-party integrations, data migration, mobile CRM apps, cloud deployment, and ongoing support.",
   features: [
-    { icon: Users, title: "Contact Management", desc: "Centralized customer data and interaction tracking" },
-    { icon: BarChart3, title: "Sales Analytics", desc: "Real-time dashboards and sales performance insights" },
-    { icon: Settings, title: "Workflow Automation", desc: "Automated processes to save time and reduce errors" },
-    { icon: Zap, title: "Lead Management", desc: "Capture, track, and nurture leads efficiently" },
-    { icon: Globe, title: "Multi-Channel", desc: "Manage interactions across email, phone, and social" },
-    { icon: ShieldCheck, title: "Data Security", desc: "Enterprise-grade security for sensitive customer data" },
+    { icon: Users, title: "Contact Management", description: "Centralized customer database with complete interaction history" },
+    { icon: BarChart3, title: "Sales Analytics", description: "Powerful reporting and dashboards for data-driven decisions" },
+    { icon: Target, title: "Lead Management", description: "Track and nurture leads through your entire sales pipeline" },
+    { icon: Workflow, title: "Process Automation", description: "Automate repetitive tasks and streamline workflows" },
+    { icon: MessageSquare, title: "Customer Support", description: "Integrated ticketing and support management system" },
+    { icon: Shield, title: "Secure & Scalable", description: "Enterprise-grade security with role-based access control" },
   ],
-  process: [
-    { step: "01", title: "Requirements", desc: "Business process analysis" },
-    { step: "02", title: "Design", desc: "UI/UX & architecture" },
-    { step: "03", title: "Development", desc: "Agile development sprints" },
-    { step: "04", title: "Testing", desc: "QA & user acceptance" },
-    { step: "05", title: "Launch", desc: "Deployment & training" },
+  processSteps: [
+    { title: "Business Analysis", description: "Understanding your sales process, workflows, and specific requirements" },
+    { title: "Custom Design", description: "Designing CRM features and workflows tailored to your business" },
+    { title: "Development", description: "Building your custom CRM with modern technologies and integrations" },
+    { title: "Integration & Migration", description: "Integrating with existing tools and migrating your data" },
+    { title: "Training & Support", description: "User training and ongoing support for your team" },
   ],
-  services: [
-    "Custom CRM Development", "CRM Integration",
-    "Sales Pipeline Management", "Customer Analytics",
-    "Marketing Automation", "Support Ticketing System",
-    "Mobile CRM Development", "CRM Migration",
-  ],
-  industries: [
-    "Real Estate", "Healthcare", "Financial Services", "Retail",
-    "Manufacturing", "Education", "Hospitality", "Insurance",
-  ],
+  expertiseTitle: "Our CRM Development Capabilities",
+  col1Title: "CRM Features",
+  col1Items: ["Lead & Opportunity Management", "Sales Pipeline & Forecasting", "Contact & Account Management", "Email Marketing & Campaigns", "Customer Support Ticketing", "Reports & Analytics Dashboard"],
+  col2Title: "Integrations",
+  col2Items: ["Email Integration (Gmail, Outlook)", "Calendar & Meeting Scheduling", "Payment Gateway Integration", "Social Media Integration", "Accounting Software (QuickBooks, Xero)", "Third-Party API Integration"],
+  ctaTitle: "Ready to Build Your Custom CRM?",
+  ctaDescription: "Let's create a CRM solution that perfectly fits your business needs.",
+  ctaButtonText: "Get Started Today",
 };
 
-const CRMSoftware = () => <ServicePage data={data} />;
-export default CRMSoftware;
+export default function CRMSoftware() { return <ServicePageTemplate data={data} />; }
