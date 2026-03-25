@@ -1,14 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const projects = [
-  { title: "E-Commerce Platform", category: "Web Development", description: "A scalable multi-vendor e-commerce solution with advanced inventory management and payment integration.", image: "/ecommerce-dashboard.png", tags: ["React", "Node.js", "MongoDB"] },
-  { title: "Healthcare Mobile App", category: "Mobile Development", description: "HIPAA-compliant telemedicine app connecting patients with healthcare providers instantly.", image: "/healthcare-app-interface.png", tags: ["Flutter", "Firebase", "WebRTC"] },
-  { title: "AI-Powered Analytics", category: "AI & ML", description: "Business intelligence platform with predictive analytics and automated insights generation.", image: "/analytics-dashboard.png", tags: ["Python", "TensorFlow", "React"] },
-  { title: "Real Estate Portal", category: "Web Development", description: "Comprehensive property listing platform with virtual tours and advanced search filters.", image: "/real-estate-website-hero.png", tags: ["Next.js", "PostgreSQL", "Maps API"] },
-  { title: "Fitness Tracking App", category: "Mobile Development", description: "Wearable-integrated fitness app with personalized workout plans and nutrition tracking.", image: "/fitness-app-interface.png", tags: ["React Native", "IoT", "AWS"] },
-  { title: "Blockchain DApp", category: "Blockchain", description: "Decentralized application for secure peer-to-peer transactions and smart contracts.", image: "/blockchain-app.jpg", tags: ["Solidity", "Web3", "Ethereum"] },
+  { title: "MMCTS - Cardio-Thoracic Surgery Manual", category: "Healthcare", description: "Premier online video manual for cardiovascular and thoracic surgery tutorials, published by the European Association for Cardio-Thoracic Surgery.", image: "/portfolio/mmcts.png", tags: ["Web Dev", "CMS", "Video"], url: "https://mmcts.org/" },
+  { title: "Cupid Casa - Real Estate Platform", category: "Real Estate", description: "Innovative platform connecting homeowners with buyers. Self-advertise your home with no contracts or commitments.", image: "/portfolio/cupidcasa.png", tags: ["Web Dev", "UI/UX", "SEO"], url: "https://www.cupidcasa.com/" },
+  { title: "Vanna Belt - E-Commerce Store", category: "E-Commerce", description: "Premium body aesthetics brand Shopify store with product bundles, wishlist, and optimized checkout.", image: "/portfolio/vannabelt.png", tags: ["Shopify", "E-Commerce", "UI/UX"], url: "https://vannabelt.com/" },
+  { title: "AIT Home Delivery - Logistics", category: "Logistics", description: "UK's leading 2-person home delivery specialists with tracking, service upgrades, and multi-sector logistics.", image: "/portfolio/aithomedelivery.png", tags: ["WordPress", "Tracking", "Custom Dev"], url: "https://aithomedelivery.co.uk/" },
+  { title: "EC4P - Compliance Platform", category: "SaaS", description: "Global WEEE, Batteries & Packaging recycling compliance cloud platform for managing EPR obligations.", image: "/portfolio/ec4p.png", tags: ["SaaS", "Cloud", "Dashboard"], url: "https://ec4p.com/" },
 ];
 
 export function PortfolioSection() {
@@ -35,11 +35,12 @@ export function PortfolioSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={project.title} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 hover:border-transparent relative animate-fade-in"
+            <a href={project.url} target="_blank" rel="noopener noreferrer" key={project.title}>
+            <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 hover:border-transparent relative animate-fade-in h-full"
               style={{ animationDelay: `${index * 100}ms` }}>
               <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--tertiary))] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-              <div className="relative h-64 overflow-hidden">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="relative h-52 overflow-hidden">
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                 <div className="absolute bottom-4 left-4">
                   <span className="inline-block px-3 py-1 bg-gradient-to-r from-[hsl(var(--accent))] to-[hsl(var(--tertiary))] text-white text-xs font-medium rounded-full shadow-lg">
@@ -48,26 +49,29 @@ export function PortfolioSection() {
                 </div>
               </div>
               <CardContent className="pt-6 relative z-10">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed group-hover:text-foreground transition-colors">{project.description}</p>
+                <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm group-hover:text-foreground transition-colors line-clamp-3">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => (
                     <span key={tag} className={`px-2 py-1 text-xs rounded transition-all duration-300 ${
-                      tagIndex % 3 === 0 ? "bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] group-hover:bg-[hsl(var(--primary))] group-hover:text-white" :
-                      tagIndex % 3 === 1 ? "bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] group-hover:bg-[hsl(var(--accent))] group-hover:text-white" :
-                      "bg-[hsl(var(--tertiary))]/10 text-[hsl(var(--tertiary))] group-hover:bg-[hsl(var(--tertiary))] group-hover:text-white"
+                      tagIndex % 3 === 0 ? "bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]" :
+                      tagIndex % 3 === 1 ? "bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]" :
+                      "bg-[hsl(var(--tertiary))]/10 text-[hsl(var(--tertiary))]"
                     }`}>{tag}</span>
                   ))}
                 </div>
               </CardContent>
             </Card>
+            </a>
           ))}
         </div>
 
         <div className="text-center mt-12 animate-fade-in">
-          <Button size="lg" variant="outline" className="border-2 border-[hsl(var(--primary))] hover:bg-gradient-to-r hover:from-[hsl(var(--primary))] hover:via-[hsl(var(--accent))] hover:to-[hsl(var(--tertiary))] hover:text-white hover:border-transparent transition-all duration-300 group bg-transparent">
-            View All Projects
-            <ExternalLink className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+          <Button size="lg" variant="outline" asChild className="border-2 border-[hsl(var(--primary))] hover:bg-gradient-to-r hover:from-[hsl(var(--primary))] hover:via-[hsl(var(--accent))] hover:to-[hsl(var(--tertiary))] hover:text-white hover:border-transparent transition-all duration-300 group bg-transparent">
+            <Link to="/portfolio">
+              View All Projects
+              <ExternalLink className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+            </Link>
           </Button>
         </div>
       </div>
