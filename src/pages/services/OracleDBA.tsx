@@ -33,6 +33,12 @@ const data: ServicePageData = {
   ctaTitle: "Need Expert Oracle DBA Support?",
   ctaDescription: "Let our certified DBAs optimize and manage your Oracle databases.",
   ctaButtonText: "Get Free Database Assessment",
+  faqs: [
+    { question: "What Oracle database versions do you support?", answer: "We support all Oracle versions including 12c, 18c, 19c, 21c, and Oracle Cloud. Our certified DBAs are experienced with both on-premise and cloud deployments." },
+    { question: "Do you offer 24/7 database monitoring?", answer: "Yes, we provide round-the-clock database monitoring with proactive alerting and immediate response to any issues." },
+    { question: "Can you help with Oracle database migration?", answer: "Absolutely! We handle seamless database migrations between versions, from on-premise to cloud, and cross-platform migrations." },
+    { question: "Do you offer emergency DBA support?", answer: "Yes, we provide emergency DBA support for critical database issues including crash recovery, performance emergencies, and security incidents." },
+  ],
 };
 
 export default function OracleDBA() { return <ServicePageTemplate data={data} />; }

@@ -33,6 +33,12 @@ const data: ServicePageData = {
   ctaTitle: "Ready to Transform Your Online Presence?",
   ctaDescription: "Let's create a website that your customers will love and that drives real business results.",
   ctaButtonText: "Get Free Consultation",
+  faqs: [
+    { question: "How long does it take to design a website?", answer: "A simple website takes 2-4 weeks, while complex e-commerce or custom web applications take 4-16 weeks depending on features and requirements." },
+    { question: "Do you provide responsive/mobile-friendly designs?", answer: "Yes, all our websites are built mobile-first with fully responsive designs that work perfectly on all devices and screen sizes." },
+    { question: "Will my website be SEO-friendly?", answer: "Absolutely! We build all websites with SEO best practices including proper structure, fast loading, meta tags, and search engine friendly code." },
+    { question: "Do you offer website hosting and maintenance?", answer: "Yes, we provide reliable hosting solutions and ongoing maintenance packages including security updates, backups, and content management." },
+  ],
 };
 
 export default function WebsiteDesign() { return <ServicePageTemplate data={data} />; }
