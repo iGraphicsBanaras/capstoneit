@@ -61,7 +61,7 @@ export function Footer() {
             <h3 className="font-semibold mb-4 text-lg text-white border-b border-white/20 pb-2">Contact Us</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 flex-shrink-0 text-[hsl(var(--tertiary))] mt-0.5" />
+            <MapPin className="h-5 w-5 flex-shrink-0 text-[hsl(var(--tertiary))] mt-0.5" />
                 <div className="text-sm text-white/90">
                   <p className="font-semibold mb-1">USA Office:</p>
                   <p>615 F Bell Road #4 545</p>
@@ -72,9 +72,22 @@ export function Footer() {
                 <MapPin className="h-5 w-5 flex-shrink-0 text-[hsl(var(--tertiary))] mt-0.5" />
                 <div className="text-sm text-white/90">
                   <p className="font-semibold mb-1">India Office:</p>
-                  <p>D248/4B Business Park</p>
-                  <p>Noida Sector - 63</p>
+                  <p>Near First Floor, Aarogya Niketan Trust</p>
+                  <p>Sector 63, Noida, UP 201309</p>
                 </div>
+              </div>
+              <div className="mt-4 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0!2d77.3820050!3d28.6295310!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce553e2ef4a5b%3A0xb9c8e0a5e7b8c8d0!2sCapstone%20IT%20Trends!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="150"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Office Location"
+                  className="rounded-lg"
+                />
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 flex-shrink-0 text-[hsl(var(--tertiary))] mt-0.5" />

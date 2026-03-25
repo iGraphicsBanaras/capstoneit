@@ -6,6 +6,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { GoogleMap } from "@/components/GoogleMap";
+import { FAQSection, FAQItem } from "@/components/FAQSection";
+
+const contactFaqs: FAQItem[] = [
+  { question: "How can I reach Capstone IT Trends?", answer: "You can reach us by phone at +91 9151555290, email at sales@capstoneittrends.com, or visit our office in Sector 63, Noida. You can also fill out the contact form on this page." },
+  { question: "What are your business hours?", answer: "Our business hours are Monday to Friday, 10:00 AM to 7:00 PM IST. We are closed on Saturday and Sunday." },
+  { question: "How quickly do you respond to inquiries?", answer: "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call us directly." },
+  { question: "Do you offer free consultations?", answer: "Yes! We offer a free initial consultation to discuss your project requirements, goals, and provide a preliminary estimate." },
+  { question: "Can I visit your office for a meeting?", answer: "Absolutely! You're welcome to visit our office at Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309. Please schedule an appointment beforehand." },
+];
 
 function ContactHero() {
   return (
@@ -53,7 +63,7 @@ function ContactInfo() {
   ];
   const addresses = [
     { country: "USA Office", address: "615 F Bell Road #4 545, Arizona - 85032" },
-    { country: "India Office", address: "D248/4B Business Park, Noida Sector - 63" },
+    { country: "India Office", address: "Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309" },
   ];
 
   return (
@@ -114,6 +124,19 @@ const Contact = () => (
         <ContactInfo />
       </div>
     </div>
+    {/* Google Maps Section */}
+    <section className="py-16 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent">Our Office Location</span>
+          </h2>
+          <p className="text-muted-foreground">Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309</p>
+        </div>
+        <GoogleMap className="max-w-5xl mx-auto h-[400px]" />
+      </div>
+    </section>
+    <FAQSection faqs={contactFaqs} title="Contact FAQs" subtitle="Common questions about reaching us" className="bg-background" />
   </Layout>
 );
 

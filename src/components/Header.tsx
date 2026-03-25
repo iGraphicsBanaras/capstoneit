@@ -30,6 +30,7 @@ export function Header() {
     { name: "Portfolio", href: "/portfolio" },
     { name: "Technologies", href: "/technologies", hasSubmenu: true },
     { name: "Blogs", href: "/blogs" },
+    { name: "FAQ", href: "/faq" },
     { name: "Contact", href: "/contact" },
   ];
 

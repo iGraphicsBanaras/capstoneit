@@ -33,6 +33,12 @@ const data: ServicePageData = {
   ctaTitle: "Ready to Build with MongoDB?",
   ctaDescription: "Let our experts help you leverage MongoDB for your next project.",
   ctaButtonText: "Get Free Consultation",
+  faqs: [
+    { question: "When should I use MongoDB over SQL databases?", answer: "MongoDB is ideal for applications with flexible data models, high scalability needs, real-time analytics, content management, IoT, and rapid development cycles." },
+    { question: "Can you migrate our existing SQL database to MongoDB?", answer: "Yes, we provide complete migration services from SQL databases to MongoDB including data modeling, migration scripts, and application updates." },
+    { question: "Do you support MongoDB Atlas cloud deployment?", answer: "Absolutely! We deploy and manage MongoDB on Atlas with features like auto-scaling, automated backups, and global distribution." },
+    { question: "What programming languages do you use with MongoDB?", answer: "We work with Node.js, Python, Java, and other popular languages using official MongoDB drivers and ODMs like Mongoose." },
+  ],
 };
 
 export default function MongoDBDevelopment() { return <ServicePageTemplate data={data} />; }

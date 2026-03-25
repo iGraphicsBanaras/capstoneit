@@ -142,7 +142,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-2">Visit Us</h3>
-                    <p className="text-muted-foreground">Capstone IT Trends Pvt. Ltd.<br />India</p>
+                    <p className="text-muted-foreground">Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309</p>
                   </div>
                 </div>
               </CardContent>
@@ -154,6 +154,21 @@ export function ContactSection() {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* Google Map */}
+        <div className="max-w-6xl mx-auto mt-12">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0!2d77.3820050!3d28.6295310!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce553e2ef4a5b%3A0xb9c8e0a5e7b8c8d0!2sCapstone%20IT%20Trends%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            width="100%"
+            height="350"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Capstone IT Trends Office"
+            className="rounded-xl shadow-lg"
+          />
         </div>
       </div>
     </section>

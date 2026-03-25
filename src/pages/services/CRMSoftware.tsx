@@ -33,6 +33,12 @@ const data: ServicePageData = {
   ctaTitle: "Ready to Build Your Custom CRM?",
   ctaDescription: "Let's create a CRM solution that perfectly fits your business needs.",
   ctaButtonText: "Get Started Today",
+  faqs: [
+    { question: "Why choose custom CRM over off-the-shelf solutions?", answer: "Custom CRM is built around your specific business processes, offers unlimited customization, better integration with existing tools, and scales with your growth without per-user licensing costs." },
+    { question: "How long does CRM development take?", answer: "A basic CRM takes 8-12 weeks, while an enterprise CRM with advanced features can take 16-24 weeks. We provide detailed timelines during planning." },
+    { question: "Can you integrate the CRM with our existing tools?", answer: "Yes, we integrate with email services, payment gateways, accounting software, social media platforms, and any third-party APIs you use." },
+    { question: "Do you provide CRM training and support?", answer: "Absolutely! We provide comprehensive user training, admin training, documentation, and ongoing technical support for your CRM system." },
+  ],
 };
 
 export default function CRMSoftware() { return <ServicePageTemplate data={data} />; }

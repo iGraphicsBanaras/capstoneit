@@ -33,6 +33,12 @@ const data: ServicePageData = {
   ctaTitle: "Ready to Elevate Your Brand?",
   ctaDescription: "Let's create stunning visuals that make your brand unforgettable.",
   ctaButtonText: "Start Your Project",
+  faqs: [
+    { question: "What types of graphic design services do you offer?", answer: "We offer logo design, brand identity, marketing collateral, social media graphics, packaging design, infographics, web graphics, and more." },
+    { question: "How many design revisions are included?", answer: "We typically include 3-5 rounds of revisions in our design packages. We work closely with you until you're 100% satisfied." },
+    { question: "Do I get the source files?", answer: "Yes, upon project completion you receive all source files (AI, PSD, etc.) along with final exports in all required formats." },
+    { question: "How long does a logo design project take?", answer: "A logo design project typically takes 1-2 weeks, including concept development, presentations, and revisions." },
+  ],
 };
 
 export default function GraphicDesign() { return <ServicePageTemplate data={data} />; }
