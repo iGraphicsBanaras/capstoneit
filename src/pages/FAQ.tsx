@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import { FAQSection, FAQItem } from "@/components/FAQSection";
 import { motion } from "framer-motion";
 import { HelpCircle } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const generalFaqs: FAQItem[] = [
   { question: "What services does Capstone IT Trends offer?", answer: "We offer a wide range of IT services including Web Development, Mobile App Development, UI/UX Design, Digital Marketing (SEO, PPC, Social Media), AI & Machine Learning, Blockchain Development, AR/VR Solutions, IoT Applications, E-commerce Solutions, Cloud Computing, CRM Development, Oracle DBA Services, MongoDB Development, and Quality Assurance." },
@@ -32,6 +33,13 @@ const digitalMarketingFaqs: FAQItem[] = [
 
 const FAQ = () => (
   <Layout>
+    <SEO
+      title="FAQ - Frequently Asked Questions | Capstone IT Trends"
+      description="Find answers to common questions about Capstone IT Trends services, pricing, process, technologies, and support. Web development, app development & digital marketing FAQs."
+      canonical="/faq"
+      keywords="FAQ, frequently asked questions, Capstone IT Trends FAQ, IT services questions"
+      jsonLd={{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [...generalFaqs, ...webDevFaqs, ...mobileAppFaqs, ...digitalMarketingFaqs].map(f => ({ "@type": "Question", "name": f.question, "acceptedAnswer": { "@type": "Answer", "text": f.answer } })) }}
+    />
     <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-yellow-500">
       <div className="absolute inset-0 overflow-hidden">
         <motion.div className="absolute -top-40 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 8, repeat: Infinity }} />

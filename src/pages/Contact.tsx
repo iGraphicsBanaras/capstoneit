@@ -118,6 +118,13 @@ function ContactInfo() {
 
 const Contact = () => (
   <Layout>
+    <SEO
+      title="Contact Us - Get Free Consultation | Capstone IT Trends"
+      description="Contact Capstone IT Trends for web development, app development & digital marketing. Call +91 9151555290 or visit our Noida office. Free consultation available."
+      canonical="/contact"
+      keywords="contact Capstone IT Trends, IT company Noida contact, free consultation, web development inquiry"
+      jsonLd={{ "@context": "https://schema.org", "@type": "ContactPage", "name": "Contact Capstone IT Trends", "url": "https://www.capstoneittrends.com/contact" }}
+    />
     <ContactHero />
     <div className="container mx-auto px-4 py-16">
       <div className="grid md:grid-cols-2 gap-12">
