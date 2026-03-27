@@ -29,8 +29,28 @@ export interface ServicePageData {
 }
 
 export default function ServicePageTemplate({ data }: { data: ServicePageData }) {
+  const location = useLocation();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": data.title,
+    "description": data.description,
+    "provider": {
+      "@type": "Organization",
+      "name": "Capstone IT Trends",
+      "url": "https://www.capstoneittrends.com"
+    },
+    "url": `https://www.capstoneittrends.com${location.pathname}`
+  };
   return (
     <Layout>
+      <SEO
+        title={data.title}
+        description={data.description}
+        canonical={location.pathname}
+        keywords={`${data.title}, Capstone IT Trends, ${data.col1Items?.slice(0, 3).join(", ")}`}
+        jsonLd={jsonLd}
+      />
       {/* Hero */}
       <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-[hsl(var(--primary))]/5 via-background to-[hsl(var(--accent))]/5">
         <div className="container mx-auto px-4">
