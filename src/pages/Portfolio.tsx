@@ -5,6 +5,7 @@ import { ExternalLink, TrendingUp, Users, Clock, Star } from "lucide-react";
 import { FAQSection } from "@/components/FAQSection";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SEO from "@/components/SEO";
 
 function PortfolioHero() {
   return (
@@ -221,6 +222,12 @@ const portfolioFaqs = [
 
 const Portfolio = () => (
   <Layout>
+    <SEO
+      title="Portfolio - Our Work & Projects | Capstone IT Trends"
+      description="Explore our portfolio of 100+ successfully delivered projects across healthcare, e-commerce, real estate, logistics & SaaS. See real results from real clients."
+      canonical="/portfolio"
+      keywords="IT portfolio, web development projects, app development portfolio, Capstone IT Trends work"
+    />
     <PortfolioHero />
     <PortfolioGrid />
     <CaseStudies />

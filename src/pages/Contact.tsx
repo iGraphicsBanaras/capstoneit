@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { GoogleMap } from "@/components/GoogleMap";
 import { FAQSection, FAQItem } from "@/components/FAQSection";
+import SEO from "@/components/SEO";
 
 const contactFaqs: FAQItem[] = [
   { question: "How can I reach Capstone IT Trends?", answer: "You can reach us by phone at +91 9151555290, email at sales@capstoneittrends.com, or visit our office in Sector 63, Noida. You can also fill out the contact form on this page." },
