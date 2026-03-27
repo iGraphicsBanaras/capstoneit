@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Building2, Users, Lightbulb, TrendingUp, Target, Eye, Award, Code, Palette, Shield, Headphones } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FAQSection } from "@/components/FAQSection";
+import SEO from "@/components/SEO";
 
 function AboutHero() {
   return (
