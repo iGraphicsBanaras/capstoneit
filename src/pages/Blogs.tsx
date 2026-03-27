@@ -4,6 +4,7 @@ import { BookOpen, TrendingUp, Lightbulb, Calendar, Clock as ClockIcon, ArrowRig
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FAQSection } from "@/components/FAQSection";
+import SEO from "@/components/SEO";
 
 function BlogsHero() {
   return (
@@ -132,6 +133,12 @@ const blogFaqs = [
 
 const Blogs = () => (
   <Layout>
+    <SEO
+      title="Tech Insights & Blogs | Capstone IT Trends"
+      description="Stay updated with latest technology trends, development tips, and industry insights. Expert articles on web development, mobile apps, AI, cloud computing & more."
+      canonical="/blogs"
+      keywords="tech blog, web development blog, IT trends, software development insights, Capstone IT Trends blog"
+    />
     <BlogsHero />
     <BlogCategories />
     <BlogGrid />

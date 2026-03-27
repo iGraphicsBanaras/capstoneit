@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Building2, Users, Lightbulb, TrendingUp, Target, Eye, Award, Code, Palette, Shield, Headphones } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FAQSection } from "@/components/FAQSection";
+import SEO from "@/components/SEO";
 
 function AboutHero() {
   return (
@@ -183,6 +184,13 @@ const aboutFaqs = [
 
 const About = () => (
   <Layout>
+    <SEO
+      title="About Capstone IT Trends - Leading IT Solutions Company in Noida"
+      description="Learn about Capstone IT Trends, a premier IT company with 5+ years of experience, 50+ experts, and 500+ projects delivered. Web development, app development & digital marketing."
+      canonical="/about"
+      keywords="about Capstone IT Trends, IT company Noida, software development company, web development agency India"
+      jsonLd={{ "@context": "https://schema.org", "@type": "AboutPage", "name": "About Capstone IT Trends", "url": "https://www.capstoneittrends.com/about" }}
+    />
     <AboutHero />
     <OurStory />
     <CompanyStats />
