@@ -1,9 +1,10 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 import { FAQSection, FAQItem } from "@/components/FAQSection";
+import SEO from "@/components/SEO";
 
 export interface ServicePageData {
   title: string;
