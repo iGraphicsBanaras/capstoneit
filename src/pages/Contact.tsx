@@ -11,11 +11,11 @@ import { FAQSection, FAQItem } from "@/components/FAQSection";
 import SEO from "@/components/SEO";
 
 const contactFaqs: FAQItem[] = [
-  { question: "How can I reach Capstone IT Trends?", answer: "You can reach us by phone at +91 9151555290, email at sales@capstoneittrends.com, or visit our office in Sector 63, Noida. You can also fill out the contact form on this page." },
+  { question: "How can I reach Capstone IT Trends?", answer: "You can reach us by phone at +91 9151555290, email at sales@capstoneittrends.com, or visit our offices in Sector 63, Noida or Lamahi, Varanasi. You can also fill out the contact form on this page." },
   { question: "What are your business hours?", answer: "Our business hours are Monday to Friday, 10:00 AM to 7:00 PM IST. We are closed on Saturday and Sunday." },
   { question: "How quickly do you respond to inquiries?", answer: "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call us directly." },
   { question: "Do you offer free consultations?", answer: "Yes! We offer a free initial consultation to discuss your project requirements, goals, and provide a preliminary estimate." },
-  { question: "Can I visit your office for a meeting?", answer: "Absolutely! You're welcome to visit our office at Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309. Please schedule an appointment beforehand." },
+  { question: "Can I visit your office for a meeting?", answer: "Absolutely! You're welcome to visit our Noida office at Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309, or our Varanasi office at Mahalaxmipuram Colony, Near Mahendra Kotak Bank, Lamahi, Varanasi, UP 221007. Please schedule an appointment beforehand." },
 ];
 
 function ContactHero() {
