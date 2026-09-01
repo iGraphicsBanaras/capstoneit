@@ -71,9 +71,17 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 flex-shrink-0 text-[hsl(var(--tertiary))] mt-0.5" />
                 <div className="text-sm text-white/90">
-                  <p className="font-semibold mb-1">India Office:</p>
+                  <p className="font-semibold mb-1">India Office (Noida):</p>
                   <p>Near First Floor, Aarogya Niketan Trust</p>
                   <p>Sector 63, Noida, UP 201309</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 flex-shrink-0 text-[hsl(var(--tertiary))] mt-0.5" />
+                <div className="text-sm text-white/90">
+                  <p className="font-semibold mb-1">India Office (Varanasi):</p>
+                  <p>Mahalaxmipuram Colony, Near Mahendra Kotak Bank</p>
+                  <p>Lamahi, Varanasi, UP 221007</p>
                 </div>
               </div>
               <div className="mt-4 rounded-lg overflow-hidden">

@@ -142,7 +142,8 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-2">Visit Us</h3>
-                    <p className="text-muted-foreground">Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309</p>
+                    <p className="text-muted-foreground">Noida: Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309</p>
+                    <p className="text-muted-foreground mt-1">Varanasi: Mahalaxmipuram Colony, Near Mahendra Kotak Bank, Lamahi, Varanasi, UP 221007</p>
                   </div>
                 </div>
               </CardContent>
