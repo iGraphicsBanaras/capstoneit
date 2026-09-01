@@ -64,7 +64,8 @@ function ContactInfo() {
   ];
   const addresses = [
     { country: "USA Office", address: "615 F Bell Road #4 545, Arizona - 85032" },
-    { country: "India Office", address: "Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309" },
+    { country: "India Office (Noida)", address: "Near First Floor, Aarogya Niketan Trust, Main Road, Chhajarsi Colony, Sector 63, Noida, UP 201309" },
+    { country: "India Office (Varanasi)", address: "Mahalaxmipuram Colony, Near Mahendra Kotak Bank, Lamahi, Varanasi, UP 221007" },
   ];
 
   return (
