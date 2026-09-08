@@ -28,7 +28,7 @@ Deno.serve(async (req) => {
 
   const { data: blogs } = await supabase
     .from("blogs")
-    .select("slug, updated_at, noindex:status")
+    .select("slug, updated_at")
     .eq("status", "published");
 
   const { data: seo } = await supabase.from("page_seo").select("path, noindex");
