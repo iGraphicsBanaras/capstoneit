@@ -70,10 +70,10 @@ export default function Admin() {
             <TabsTrigger value="blogs"><FileText className="h-4 w-4 mr-2" />Blogs</TabsTrigger>
             <TabsTrigger value="seo"><Search className="h-4 w-4 mr-2" />SEO</TabsTrigger>
             <TabsTrigger value="sitemap"><Map className="h-4 w-4 mr-2" />Sitemap</TabsTrigger>
-
           </TabsList>
           <TabsContent value="blogs"><BlogsManager /></TabsContent>
           <TabsContent value="seo"><SeoManager /></TabsContent>
+          <TabsContent value="sitemap"><SitemapManager /></TabsContent>
         </Tabs>
       </main>
     </div>
