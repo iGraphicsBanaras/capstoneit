@@ -21,7 +21,8 @@ export function useAdminAuth() {
         .eq("user_id", uid)
         .eq("role", "admin")
         .maybeSingle()
-        .then(({ data }) => {
+        .then(({ data, error }) => {
+          if (error) console.error("Admin role check failed:", error.message);
           setIsAdmin(!!data);
           setLoading(false);
         });
