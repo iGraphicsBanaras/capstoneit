@@ -4,10 +4,11 @@ import { Helmet } from "react-helmet-async";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Loader2, LogOut, FileText, Search, Globe } from "lucide-react";
+import { Loader2, LogOut, FileText, Search, Globe, Map } from "lucide-react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import BlogsManager from "@/components/admin/BlogsManager";
 import SeoManager from "@/components/admin/SeoManager";
+import SitemapManager from "@/components/admin/SitemapManager";
 
 export default function Admin() {
   const { user, isAdmin, loading, signOut } = useAdminAuth();
