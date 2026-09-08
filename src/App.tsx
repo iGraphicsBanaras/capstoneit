@@ -9,7 +9,10 @@ import About from "./pages/About.tsx";
 import Portfolio from "./pages/Portfolio.tsx";
 import Contact from "./pages/Contact.tsx";
 import Blogs from "./pages/Blogs.tsx";
+import BlogPost from "./pages/BlogPost.tsx";
 import FAQ from "./pages/FAQ.tsx";
+import Auth from "./pages/Auth.tsx";
+import Admin from "./pages/admin/Admin.tsx";
 // Service Pages
 import WebsiteDesign from "./pages/services/WebsiteDesign.tsx";
 import GraphicDesign from "./pages/services/GraphicDesign.tsx";
@@ -57,7 +60,10 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogPost />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/admin" element={<Admin />} />
           {/* Service Routes */}
           <Route path="/services/website-design" element={<WebsiteDesign />} />
           <Route path="/services/graphic-design" element={<GraphicDesign />} />

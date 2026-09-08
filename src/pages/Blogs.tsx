@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
-import { BookOpen, TrendingUp, Lightbulb, Calendar, Clock as ClockIcon, ArrowRight, User, Code2, Smartphone, Brain, Cloud, Lock, Layers, Database, Globe, Zap } from "lucide-react";
+import { BookOpen, TrendingUp, Lightbulb, Calendar, Clock as ClockIcon, ArrowRight, User, Code2, Smartphone, Brain, Cloud, Lock, Layers, Database, Globe, Zap, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FAQSection } from "@/components/FAQSection";
 import SEO from "@/components/SEO";
+import { supabase } from "@/integrations/supabase/client";
 
 function BlogsHero() {
   return (
@@ -77,15 +80,34 @@ function BlogCategories() {
   );
 }
 
+interface BlogRow {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  author: string;
+  cover_image: string | null;
+  read_time: string;
+  published_at: string | null;
+  updated_at: string;
+}
+
 function BlogGrid() {
-  const blogs = [
-    { id: 1, title: "10 Best Practices for Modern Web Development in 2024", excerpt: "Discover the latest best practices and trends in web development.", category: "Web Development", author: "Capstone IT Trends", date: "January 15, 2024", readTime: "8 min read", image: "/modern-web-development-code.jpg", featured: true },
-    { id: 2, title: "The Future of Mobile App Development: Cross-Platform vs Native", excerpt: "Explore the pros and cons of cross-platform frameworks like Flutter and React Native.", category: "Mobile Apps", author: "Capstone IT Trends", date: "January 12, 2024", readTime: "6 min read", image: "/mobile-app-development.png" },
-    { id: 3, title: "AI and Machine Learning: Transforming Business Operations", excerpt: "Learn how AI and machine learning are revolutionizing business processes.", category: "Artificial Intelligence", author: "Capstone IT Trends", date: "January 10, 2024", readTime: "10 min read", image: "/ai-neural-network.png" },
-    { id: 4, title: "Cloud Computing Security: Best Practices and Strategies", excerpt: "Understanding essential security measures for protecting your cloud data.", category: "Cloud Computing", author: "Capstone IT Trends", date: "January 8, 2024", readTime: "7 min read", image: "/cloud-security-concept.png" },
-    { id: 5, title: "SEO Strategies That Actually Work in 2024", excerpt: "Discover proven SEO techniques to improve your search engine rankings.", category: "Digital Marketing", author: "Capstone IT Trends", date: "January 5, 2024", readTime: "9 min read", image: "/seo-digital-marketing-analytics.jpg" },
-    { id: 6, title: "Blockchain Technology: Beyond Cryptocurrency", excerpt: "Explore real-world applications of blockchain in supply chain, healthcare, and finance.", category: "Blockchain", author: "Capstone IT Trends", date: "January 3, 2024", readTime: "8 min read", image: "/blockchain-network.png" },
-  ];
+  const [blogs, setBlogs] = useState<BlogRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase
+      .from("blogs")
+      .select("id,slug,title,excerpt,category,author,cover_image,read_time,published_at,updated_at")
+      .eq("status", "published")
+      .order("published_at", { ascending: false })
+      .then(({ data }) => {
+        setBlogs((data as BlogRow[]) ?? []);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <section className="py-16 bg-muted/30">
@@ -94,32 +116,43 @@ function BlogGrid() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest Articles</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">Stay informed with our latest insights and expert analysis</p>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog, index) => (
-            <motion.div key={blog.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
-              <Card className="overflow-hidden h-full flex flex-col group hover:shadow-xl transition-all duration-300 cursor-pointer">
-                <div className="relative h-48 overflow-hidden">
-                  <img src={blog.image} alt={blog.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-[hsl(var(--primary))] text-white px-3 py-1 rounded-full text-xs font-medium">{blog.category}</span>
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-                    <div className="flex items-center gap-1"><User className="h-3 w-3" /><span>{blog.author}</span></div>
-                    <div className="flex items-center gap-1"><Calendar className="h-3 w-3" /><span>{blog.date}</span></div>
-                    <div className="flex items-center gap-1"><ClockIcon className="h-3 w-3" /><span>{blog.readTime}</span></div>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-[hsl(var(--primary))] transition-colors line-clamp-2">{blog.title}</h3>
-                  <p className="text-muted-foreground mb-4 flex-1 line-clamp-3">{blog.excerpt}</p>
-                  <Button variant="link" className="p-0 h-auto font-semibold group/btn">
-                    Read More <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+
+        {loading ? (
+          <div className="flex justify-center py-12"><Loader2 className="h-6 w-6 animate-spin text-[hsl(var(--accent))]" /></div>
+        ) : blogs.length === 0 ? (
+          <p className="text-center text-muted-foreground py-12">New articles are coming soon. Stay tuned!</p>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogs.map((blog, index) => (
+              <motion.div key={blog.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
+                <Link to={`/blogs/${blog.slug}`}>
+                  <Card className="overflow-hidden h-full flex flex-col group hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    {blog.cover_image && (
+                      <div className="relative h-48 overflow-hidden">
+                        <img src={blog.cover_image} alt={blog.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-[hsl(var(--primary))] text-white px-3 py-1 rounded-full text-xs font-medium">{blog.category}</span>
+                        </div>
+                      </div>
+                    )}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+                        <div className="flex items-center gap-1"><User className="h-3 w-3" /><span>{blog.author}</span></div>
+                        <div className="flex items-center gap-1"><Calendar className="h-3 w-3" /><span>{new Date(blog.published_at ?? blog.updated_at).toLocaleDateString()}</span></div>
+                        <div className="flex items-center gap-1"><ClockIcon className="h-3 w-3" /><span>{blog.read_time}</span></div>
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-[hsl(var(--primary))] transition-colors line-clamp-2">{blog.title}</h3>
+                      <p className="text-muted-foreground mb-4 flex-1 line-clamp-3">{blog.excerpt}</p>
+                      <span className="inline-flex items-center font-semibold text-[hsl(var(--accent))]">
+                        Read More <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
