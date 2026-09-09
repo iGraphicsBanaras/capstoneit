@@ -121,21 +121,40 @@ interface BlogRow {
   updated_at: string;
 }
 
-function BlogGrid() {
+function usePublishedBlogs() {
   const [blogs, setBlogs] = useState<BlogRow[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase
-      .from("blogs")
-      .select("id,slug,title,excerpt,category,author,cover_image,read_time,published_at,updated_at")
-      .eq("status", "published")
-      .order("published_at", { ascending: false })
-      .then(({ data }) => {
-        setBlogs((data as BlogRow[]) ?? []);
-        setLoading(false);
-      });
+    let active = true;
+    const load = async () => {
+      const { data } = await supabase
+        .from("blogs")
+        .select("id,slug,title,excerpt,category,author,cover_image,read_time,published_at,updated_at")
+        .eq("status", "published")
+        .order("published_at", { ascending: false });
+      if (!active) return;
+      setBlogs((data as BlogRow[]) ?? []);
+      setLoading(false);
+    };
+    void load();
+
+    const channel = supabase
+      .channel("public-blogs-list")
+      .on("postgres_changes", { event: "*", schema: "public", table: "blogs" }, () => void load())
+      .subscribe();
+
+    return () => {
+      active = false;
+      supabase.removeChannel(channel);
+    };
   }, []);
+
+  return { blogs, loading };
+}
+
+function BlogGrid({ blogs, loading }: { blogs: BlogRow[]; loading: boolean }) {
+
 
   return (
     <section className="py-16 bg-muted/30">
