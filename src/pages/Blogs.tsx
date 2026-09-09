@@ -84,7 +84,14 @@ function BlogCategories({
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {categories.map((category, index) => (
             <motion.div key={category.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
-              <Button variant="outline" className="w-full h-auto flex flex-col items-center gap-3 p-4 hover:border-[hsl(var(--primary))] transition-all group bg-transparent">
+              <Button
+                variant="outline"
+                onClick={() => onSelect(selected === category.name ? null : category.name)}
+                className={`w-full h-auto flex flex-col items-center gap-3 p-4 hover:border-[hsl(var(--primary))] transition-all group bg-transparent ${
+                  selected === category.name ? "border-[hsl(var(--primary))]" : ""
+                }`}
+              >
+
                 <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
                   <category.icon className="h-6 w-6 text-white" />
                 </div>
