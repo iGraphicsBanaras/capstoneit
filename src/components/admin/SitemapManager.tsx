@@ -41,6 +41,14 @@ export default function SitemapManager() {
 
   useEffect(() => {
     build();
+    const channel = supabase
+      .channel("admin-sitemap")
+      .on("postgres_changes", { event: "*", schema: "public", table: "blogs" }, () => build())
+      .on("postgres_changes", { event: "*", schema: "public", table: "page_seo" }, () => build())
+      .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const download = () => {

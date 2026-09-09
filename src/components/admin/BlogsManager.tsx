@@ -76,6 +76,13 @@ export default function BlogsManager() {
 
   useEffect(() => {
     load();
+    const channel = supabase
+      .channel("admin-blogs")
+      .on("postgres_changes", { event: "*", schema: "public", table: "blogs" }, () => load())
+      .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const save = async () => {

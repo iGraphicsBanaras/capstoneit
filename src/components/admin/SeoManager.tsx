@@ -70,26 +70,37 @@ export default function SeoManager() {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    supabase
-      .from("page_seo")
-      .select("*")
-      .then(({ data, error }) => {
-        if (error) toast.error(error.message);
-        const map: Record<string, SeoRow> = {};
-        (data ?? []).forEach((r) => {
-          map[r.path] = {
-            path: r.path,
-            title: r.title ?? "",
-            description: r.description ?? "",
-            keywords: r.keywords ?? "",
-            og_image: r.og_image ?? "",
-            canonical: r.canonical ?? "",
-            noindex: r.noindex,
-          };
-        });
-        setRows(map);
-        setLoading(false);
+    let active = true;
+    const load = async () => {
+      const { data, error } = await supabase.from("page_seo").select("*");
+      if (!active) return;
+      if (error) toast.error(error.message);
+      const map: Record<string, SeoRow> = {};
+      (data ?? []).forEach((r) => {
+        map[r.path] = {
+          path: r.path,
+          title: r.title ?? "",
+          description: r.description ?? "",
+          keywords: r.keywords ?? "",
+          og_image: r.og_image ?? "",
+          canonical: r.canonical ?? "",
+          noindex: r.noindex,
+        };
       });
+      setRows(map);
+      setLoading(false);
+    };
+    void load();
+
+    const channel = supabase
+      .channel("admin-page-seo")
+      .on("postgres_changes", { event: "*", schema: "public", table: "page_seo" }, () => void load())
+      .subscribe();
+
+    return () => {
+      active = false;
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const current = rows[selected] ?? blank(selected);

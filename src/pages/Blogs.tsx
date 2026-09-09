@@ -39,19 +39,40 @@ function BlogsHero() {
   );
 }
 
-function BlogCategories() {
-  const categories = [
-    { name: "Web Development", icon: Code2, count: 12, color: "from-blue-500 to-blue-600" },
-    { name: "Mobile Apps", icon: Smartphone, count: 8, color: "from-orange-500 to-orange-600" },
-    { name: "Artificial Intelligence", icon: Brain, count: 10, color: "from-purple-500 to-purple-600" },
-    { name: "Cloud Computing", icon: Cloud, count: 6, color: "from-cyan-500 to-cyan-600" },
-    { name: "Digital Marketing", icon: TrendingUp, count: 7, color: "from-green-500 to-green-600" },
-    { name: "Cybersecurity", icon: Lock, count: 5, color: "from-red-500 to-red-600" },
-    { name: "UI/UX Design", icon: Layers, count: 9, color: "from-pink-500 to-pink-600" },
-    { name: "Databases", icon: Database, count: 4, color: "from-yellow-500 to-yellow-600" },
-    { name: "Blockchain", icon: Globe, count: 6, color: "from-indigo-500 to-indigo-600" },
-    { name: "DevOps", icon: Zap, count: 5, color: "from-teal-500 to-teal-600" },
-  ];
+const CATEGORY_STYLES: { name: string; icon: typeof Code2; color: string }[] = [
+  { name: "Web Development", icon: Code2, color: "from-blue-500 to-blue-600" },
+  { name: "Mobile Apps", icon: Smartphone, color: "from-orange-500 to-orange-600" },
+  { name: "Artificial Intelligence", icon: Brain, color: "from-purple-500 to-purple-600" },
+  { name: "Cloud Computing", icon: Cloud, color: "from-cyan-500 to-cyan-600" },
+  { name: "Digital Marketing", icon: TrendingUp, color: "from-green-500 to-green-600" },
+  { name: "Cybersecurity", icon: Lock, color: "from-red-500 to-red-600" },
+  { name: "UI/UX Design", icon: Layers, color: "from-pink-500 to-pink-600" },
+  { name: "Databases", icon: Database, color: "from-yellow-500 to-yellow-600" },
+  { name: "Blockchain", icon: Globe, color: "from-indigo-500 to-indigo-600" },
+  { name: "DevOps", icon: Zap, color: "from-teal-500 to-teal-600" },
+];
+
+const FALLBACK_STYLE = { icon: BookOpen, color: "from-slate-500 to-slate-600" };
+
+function BlogCategories({
+  blogs,
+  selected,
+  onSelect,
+}: {
+  blogs: BlogRow[];
+  selected: string | null;
+  onSelect: (value: string | null) => void;
+}) {
+  const counts = new Map<string, number>();
+  blogs.forEach((b) => counts.set(b.category, (counts.get(b.category) ?? 0) + 1));
+
+  const categories = Array.from(counts.keys()).map((name) => {
+    const style = CATEGORY_STYLES.find((c) => c.name.toLowerCase() === name.toLowerCase()) ?? FALLBACK_STYLE;
+    return { name, icon: style.icon, color: style.color, count: counts.get(name) ?? 0 };
+  });
+
+  if (categories.length === 0) return null;
+
 
   return (
     <section className="py-16 bg-background">
@@ -63,7 +84,14 @@ function BlogCategories() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {categories.map((category, index) => (
             <motion.div key={category.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
-              <Button variant="outline" className="w-full h-auto flex flex-col items-center gap-3 p-4 hover:border-[hsl(var(--primary))] transition-all group bg-transparent">
+              <Button
+                variant="outline"
+                onClick={() => onSelect(selected === category.name ? null : category.name)}
+                className={`w-full h-auto flex flex-col items-center gap-3 p-4 hover:border-[hsl(var(--primary))] transition-all group bg-transparent ${
+                  selected === category.name ? "border-[hsl(var(--primary))]" : ""
+                }`}
+              >
+
                 <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
                   <category.icon className="h-6 w-6 text-white" />
                 </div>
@@ -93,21 +121,40 @@ interface BlogRow {
   updated_at: string;
 }
 
-function BlogGrid() {
+function usePublishedBlogs() {
   const [blogs, setBlogs] = useState<BlogRow[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase
-      .from("blogs")
-      .select("id,slug,title,excerpt,category,author,cover_image,read_time,published_at,updated_at")
-      .eq("status", "published")
-      .order("published_at", { ascending: false })
-      .then(({ data }) => {
-        setBlogs((data as BlogRow[]) ?? []);
-        setLoading(false);
-      });
+    let active = true;
+    const load = async () => {
+      const { data } = await supabase
+        .from("blogs")
+        .select("id,slug,title,excerpt,category,author,cover_image,read_time,published_at,updated_at")
+        .eq("status", "published")
+        .order("published_at", { ascending: false });
+      if (!active) return;
+      setBlogs((data as BlogRow[]) ?? []);
+      setLoading(false);
+    };
+    void load();
+
+    const channel = supabase
+      .channel("public-blogs-list")
+      .on("postgres_changes", { event: "*", schema: "public", table: "blogs" }, () => void load())
+      .subscribe();
+
+    return () => {
+      active = false;
+      supabase.removeChannel(channel);
+    };
   }, []);
+
+  return { blogs, loading };
+}
+
+function BlogGrid({ blogs, loading }: { blogs: BlogRow[]; loading: boolean }) {
+
 
   return (
     <section className="py-16 bg-muted/30">
@@ -164,19 +211,25 @@ const blogFaqs = [
   { question: "Do you cover specific technology topics on request?", answer: "Absolutely! If there's a specific topic you'd like us to cover, let us know and our expert team will create in-depth content on it." },
 ];
 
-const Blogs = () => (
-  <Layout>
-    <SEO
-      title="Tech Insights & Blogs | Capstone IT Trends"
-      description="Stay updated with latest technology trends, development tips, and industry insights. Expert articles on web development, mobile apps, AI, cloud computing & more."
-      canonical="/blogs"
-      keywords="tech blog, web development blog, IT trends, software development insights, Capstone IT Trends blog"
-    />
-    <BlogsHero />
-    <BlogCategories />
-    <BlogGrid />
-    <FAQSection faqs={blogFaqs} title="Blog FAQs" subtitle="Questions about our content" className="bg-background" />
-  </Layout>
-);
+const Blogs = () => {
+  const { blogs, loading } = usePublishedBlogs();
+  const [selected, setSelected] = useState<string | null>(null);
+  const visible = selected ? blogs.filter((b) => b.category === selected) : blogs;
+
+  return (
+    <Layout>
+      <SEO
+        title="Tech Insights & Blogs | Capstone IT Trends"
+        description="Stay updated with latest technology trends, development tips, and industry insights. Expert articles on web development, mobile apps, AI, cloud computing & more."
+        canonical="/blogs"
+        keywords="tech blog, web development blog, IT trends, software development insights, Capstone IT Trends blog"
+      />
+      <BlogsHero />
+      <BlogCategories blogs={blogs} selected={selected} onSelect={setSelected} />
+      <BlogGrid blogs={visible} loading={loading} />
+      <FAQSection faqs={blogFaqs} title="Blog FAQs" subtitle="Questions about our content" className="bg-background" />
+    </Layout>
+  );
+};
 
 export default Blogs;
