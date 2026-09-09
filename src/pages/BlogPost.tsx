@@ -43,17 +43,30 @@ export default function BlogPost() {
 
   useEffect(() => {
     if (!slug) return;
+    let active = true;
     setLoading(true);
-    supabase
-      .from("blogs")
-      .select("*")
-      .eq("slug", slug)
-      .eq("status", "published")
-      .maybeSingle()
-      .then(({ data }) => {
-        setPost((data as Post) ?? null);
-        setLoading(false);
-      });
+    const load = async () => {
+      const { data } = await supabase
+        .from("blogs")
+        .select("*")
+        .eq("slug", slug)
+        .eq("status", "published")
+        .maybeSingle();
+      if (!active) return;
+      setPost((data as Post) ?? null);
+      setLoading(false);
+    };
+    void load();
+
+    const channel = supabase
+      .channel(`blog:${slug}`)
+      .on("postgres_changes", { event: "*", schema: "public", table: "blogs", filter: `slug=eq.${slug}` }, () => void load())
+      .subscribe();
+
+    return () => {
+      active = false;
+      supabase.removeChannel(channel);
+    };
   }, [slug]);
 
   if (loading) {
