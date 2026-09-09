@@ -39,19 +39,40 @@ function BlogsHero() {
   );
 }
 
-function BlogCategories() {
-  const categories = [
-    { name: "Web Development", icon: Code2, count: 12, color: "from-blue-500 to-blue-600" },
-    { name: "Mobile Apps", icon: Smartphone, count: 8, color: "from-orange-500 to-orange-600" },
-    { name: "Artificial Intelligence", icon: Brain, count: 10, color: "from-purple-500 to-purple-600" },
-    { name: "Cloud Computing", icon: Cloud, count: 6, color: "from-cyan-500 to-cyan-600" },
-    { name: "Digital Marketing", icon: TrendingUp, count: 7, color: "from-green-500 to-green-600" },
-    { name: "Cybersecurity", icon: Lock, count: 5, color: "from-red-500 to-red-600" },
-    { name: "UI/UX Design", icon: Layers, count: 9, color: "from-pink-500 to-pink-600" },
-    { name: "Databases", icon: Database, count: 4, color: "from-yellow-500 to-yellow-600" },
-    { name: "Blockchain", icon: Globe, count: 6, color: "from-indigo-500 to-indigo-600" },
-    { name: "DevOps", icon: Zap, count: 5, color: "from-teal-500 to-teal-600" },
-  ];
+const CATEGORY_STYLES: { name: string; icon: typeof Code2; color: string }[] = [
+  { name: "Web Development", icon: Code2, color: "from-blue-500 to-blue-600" },
+  { name: "Mobile Apps", icon: Smartphone, color: "from-orange-500 to-orange-600" },
+  { name: "Artificial Intelligence", icon: Brain, color: "from-purple-500 to-purple-600" },
+  { name: "Cloud Computing", icon: Cloud, color: "from-cyan-500 to-cyan-600" },
+  { name: "Digital Marketing", icon: TrendingUp, color: "from-green-500 to-green-600" },
+  { name: "Cybersecurity", icon: Lock, color: "from-red-500 to-red-600" },
+  { name: "UI/UX Design", icon: Layers, color: "from-pink-500 to-pink-600" },
+  { name: "Databases", icon: Database, color: "from-yellow-500 to-yellow-600" },
+  { name: "Blockchain", icon: Globe, color: "from-indigo-500 to-indigo-600" },
+  { name: "DevOps", icon: Zap, color: "from-teal-500 to-teal-600" },
+];
+
+const FALLBACK_STYLE = { icon: BookOpen, color: "from-slate-500 to-slate-600" };
+
+function BlogCategories({
+  blogs,
+  selected,
+  onSelect,
+}: {
+  blogs: BlogRow[];
+  selected: string | null;
+  onSelect: (value: string | null) => void;
+}) {
+  const counts = new Map<string, number>();
+  blogs.forEach((b) => counts.set(b.category, (counts.get(b.category) ?? 0) + 1));
+
+  const categories = Array.from(counts.keys()).map((name) => {
+    const style = CATEGORY_STYLES.find((c) => c.name.toLowerCase() === name.toLowerCase()) ?? FALLBACK_STYLE;
+    return { name, icon: style.icon, color: style.color, count: counts.get(name) ?? 0 };
+  });
+
+  if (categories.length === 0) return null;
+
 
   return (
     <section className="py-16 bg-background">
