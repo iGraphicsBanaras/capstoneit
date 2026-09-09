@@ -211,19 +211,25 @@ const blogFaqs = [
   { question: "Do you cover specific technology topics on request?", answer: "Absolutely! If there's a specific topic you'd like us to cover, let us know and our expert team will create in-depth content on it." },
 ];
 
-const Blogs = () => (
-  <Layout>
-    <SEO
-      title="Tech Insights & Blogs | Capstone IT Trends"
-      description="Stay updated with latest technology trends, development tips, and industry insights. Expert articles on web development, mobile apps, AI, cloud computing & more."
-      canonical="/blogs"
-      keywords="tech blog, web development blog, IT trends, software development insights, Capstone IT Trends blog"
-    />
-    <BlogsHero />
-    <BlogCategories />
-    <BlogGrid />
-    <FAQSection faqs={blogFaqs} title="Blog FAQs" subtitle="Questions about our content" className="bg-background" />
-  </Layout>
-);
+const Blogs = () => {
+  const { blogs, loading } = usePublishedBlogs();
+  const [selected, setSelected] = useState<string | null>(null);
+  const visible = selected ? blogs.filter((b) => b.category === selected) : blogs;
+
+  return (
+    <Layout>
+      <SEO
+        title="Tech Insights & Blogs | Capstone IT Trends"
+        description="Stay updated with latest technology trends, development tips, and industry insights. Expert articles on web development, mobile apps, AI, cloud computing & more."
+        canonical="/blogs"
+        keywords="tech blog, web development blog, IT trends, software development insights, Capstone IT Trends blog"
+      />
+      <BlogsHero />
+      <BlogCategories blogs={blogs} selected={selected} onSelect={setSelected} />
+      <BlogGrid blogs={visible} loading={loading} />
+      <FAQSection faqs={blogFaqs} title="Blog FAQs" subtitle="Questions about our content" className="bg-background" />
+    </Layout>
+  );
+};
 
 export default Blogs;
